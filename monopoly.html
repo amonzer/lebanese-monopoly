@@ -1,0 +1,393 @@
+<html>
+    <head>
+        <title>Monopoly Game</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css.css" />
+        <script src="jquery.min.js"></script>
+        <script src="js.js"></script>
+    </head>
+    <body>
+        
+
+        
+        
+        <audio id="myTune" controls autoplay loop style="display: none;">
+            <source src="music/monopoly.mp3">
+        </audio>
+        <div class="music">
+            <a style="display: none;" id="playMusic" href="javascript:void(0)" onclick="document.getElementById('myTune').play();document.getElementById('playMusic').style.display = 'none';document.getElementById('pauseMusic').style.display = 'block';">
+                <i class="fa fa-play">Play Music</i>
+            </a>
+            <a id="pauseMusic" href="javascript:void(0)" onclick="document.getElementById('myTune').pause();document.getElementById('playMusic').style.display = 'block';document.getElementById('pauseMusic').style.display = 'none';">
+                <i class="fa fa-play">Pause Music</i>
+            </a>
+        </div>
+        
+
+
+
+
+
+
+        <div class="monopoly">
+            <div class="spaces">
+                <div class="background_monopoly"><img src="images/background1.png" alt="background monopoly" /></div>
+                
+                <div id="player"><img src="images/player1.png" alt="player" /></div>
+                <div id="agent"><img src="images/player2.png" alt="agent" /></div>
+                
+                
+                
+                
+                
+                <div class="dices">
+                    <button id="play">Rolling Dice</button>
+                    <p id="point">0</p>
+                    
+                    
+                    
+                    
+                    <div id="wrapper">
+                      <div id="platform">
+                        <div id="dice1" class="is_dice">
+                          <div class="side front">
+                            <div class="dot center"></div>
+                          </div>
+                          <div class="side front inner"></div>
+                          <div class="side top">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                          </div>
+                          <div class="side top inner"></div>
+                          <div class="side right">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot center"></div>
+                            <div class="dot dbottom dright"></div>
+                          </div>
+                          <div class="side right inner"></div>
+                          <div class="side left">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dtop dright"></div>
+                            <div class="dot dbottom dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                          </div>
+                          <div class="side left inner"></div>
+                          <div class="side bottom">
+                            <div class="dot center"></div>
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dtop dright"></div>
+                            <div class="dot dbottom dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                          </div>
+                          <div class="side bottom inner"></div>
+                          <div class="side back">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dtop dright"></div>
+                            <div class="dot dbottom dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                            <div class="dot center dleft"></div>
+                            <div class="dot center dright"></div>
+                          </div>
+                          <div class="side back inner"></div>
+                          <div class="side cover x"></div>
+                          <div class="side cover y"></div>
+                          <div class="side cover z"></div>
+                        </div>
+                        <div id="dice2" class="is_dice">
+                          <div class="side front">
+                            <div class="dot center"></div>
+                          </div>
+                          <div class="side front inner"></div>
+                          <div class="side top">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                          </div>
+                          <div class="side top inner"></div>
+                          <div class="side right">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot center"></div>
+                            <div class="dot dbottom dright"></div>
+                          </div>
+                          <div class="side right inner"></div>
+                          <div class="side left">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dtop dright"></div>
+                            <div class="dot dbottom dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                          </div>
+                          <div class="side left inner"></div>
+                          <div class="side bottom">
+                            <div class="dot center"></div>
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dtop dright"></div>
+                            <div class="dot dbottom dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                          </div>
+                          <div class="side bottom inner"></div>
+                          <div class="side back">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dtop dright"></div>
+                            <div class="dot dbottom dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                            <div class="dot center dleft"></div>
+                            <div class="dot center dright"></div>
+                          </div>
+                          <div class="side back inner"></div>
+                          <div class="side cover x"></div>
+                          <div class="side cover y"></div>
+                          <div class="side cover z"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <script>
+                    $('#play').click(function(){
+                      $('.dices #wrapper').show(0);
+                      $('.dices #point').show(0);
+                      
+                      $('#platform').removeClass('stop').addClass('playing');
+//                      $('#dice1, #dice2')
+                      setTimeout(function(){
+                        $('#platform').removeClass('playing').addClass('stop');
+                        var number1 = Math.floor(Math.random() * 6) + 1;
+                        var number2 = Math.floor(Math.random() * 6) + 1;
+                        var number = number1 + number2;
+                        var x = 0, y = 20, z = -20;
+                        switch(number1){
+                            case 1:
+                              x = 0; y = 20; z = -20;
+                              break;
+                            case 2:
+                              x = -100; y = -150; z = 10;
+                              break;
+                            case 3:
+                              x = 0; y = -100; z = -10;
+                              break;
+                            case 4:
+                              x = 0; y = 100; z = -10;
+                              break;
+                            case 5:
+                              x = 80; y = 120; z = -10;
+                              break;
+                            case 6:
+                              x = 0; y = 200; x = 10;
+                              break;
+                        }
+                        $('#dice1').css({
+                          'transform': 'rotateX(' + x + 'deg) rotateY(' + y + 'deg) rotateZ(' + z + 'deg)'
+                        });
+
+
+
+
+                        switch(number2){
+                            case 1:
+                              x = 0; y = 20; z = -20;
+                              break;
+                            case 2:
+                              x = -100; y = -150; z = 10;
+                              break;
+                            case 3:
+                              x = 0; y = -100; z = -10;
+                              break;
+                            case 4:
+                              x = 0; y = 100; z = -10;
+                              break;
+                            case 5:
+                              x = 80; y = 120; z = -10;
+                              break;
+                            case 6:
+                              x = 0; y = 200; x = 10;
+                              break;
+                        }
+                        $('#dice2').css({
+                          'transform': 'rotateX(' + x + 'deg) rotateY(' + y + 'deg) rotateZ(' + z + 'deg)'
+                        });
+
+                        $('#platform').css({
+                          'transform': 'translate3d(0,0, 0px)'
+                        });
+
+                        $('#point').html(number);
+                        $('.dices #wrapper').delay(1500).fadeOut(500);
+                        
+                        //number = number_of_spaces
+                        if(player_turn==1){
+                            move_player_on_spaces(number);
+                            switch_player_turn(player_turn, number);
+                        }else{
+                            move_agent_on_spaces(number);
+                            switch_player_turn(player_turn, number);
+                        }
+//                      }, 2000);
+                      }, 1000);
+                    });
+                    </script>
+                </div>
+                
+                
+                
+                
+                <div class="player_turn">
+                    <span id="player_turn"></span>
+                </div>
+                
+                
+                
+                
+                
+                <div class="s0 space corner"></div>
+                <div class="s1 space"></div>
+                <div class="s2 space"></div>
+                <div class="s3 space"></div>
+                <div class="s4 space"></div>
+                <div class="s5 space"></div>
+                <div class="s6 space"></div>
+                <div class="s7 space"></div>
+                <div class="s8 space"></div>
+                <div class="s9 space"></div>
+                <div class="s10 space corner"></div>
+                <div class="s11 space"></div>
+                <div class="s12 space"></div>
+                <div class="s13 space"></div>
+                <div class="s14 space"></div>
+                <div class="s15 space"></div>
+                <div class="s16 space"></div>
+                <div class="s17 space"></div>
+                <div class="s18 space"></div>
+                <div class="s19 space"></div>
+                <div class="s20 space corner"></div>
+                <div class="s21 space"></div>
+                <div class="s22 space"></div>
+                <div class="s23 space"></div>
+                <div class="s24 space"></div>
+                <div class="s25 space"></div>
+                <div class="s26 space"></div>
+                <div class="s27 space"></div>
+                <div class="s28 space"></div>
+                <div class="s29 space"></div>
+                <div class="s30 space corner"></div>
+                <div class="s31 space"></div>
+                <div class="s32 space"></div>
+                <div class="s33 space"></div>
+                <div class="s34 space"></div>
+                <div class="s35 space"></div>
+                <div class="s36 space"></div>
+                <div class="s37 space"></div>
+                <div class="s38 space"></div>
+                <div class="s39 space"></div>
+                
+                
+            </div>
+        </div>
+        
+        <div class="player_details">
+            <h4><span id="player_name"></span></h4>
+            <div style="display: none;">Id: <span id="player_id"></span></div>
+            <div><span id="player_balance"></span></div>
+            <div style="display: none;">LOCATION: <span id="player_location"></span></div>
+            <div style="display: none;">COLOR: <span id="player_color">&nbsp;</span></div>
+            <div><span id="player_states"><br /></span></div>
+        </div>
+        <div class="agent_details">
+            <h4><span id="agent_name"></span></h4>
+            <div style="display: none;">Id: <span id="agent_id"></span></div>
+            <div><span id="agent_balance"></span></div>
+            <div style="display: none;">LOCATION: <span id="agent_location"></span></div>
+            <div style="display: none;">COLOR: <span id="agent_color"></span></div>
+            <div><span id="agent_states"><br /></span></div>
+        </div>
+
+        
+<div class="bank_info">
+    <img src="images/money.png" />
+    <h3>$ <span id="bank_balance"></span></h3>
+</div>
+
+
+<button id="start_game" onclick="startGame()">Start Game</button>
+<button id="end_game" onclick="endGame()">End Game</button>
+<button id="refresh_game" onclick="refreshGame()">Refresh</button>
+<div class="timer">
+    Timer: <label id="minutes">00</label>:<label id="seconds">00</label>
+</div>
+
+<script>
+set_initial_states_info();
+
+
+var myGameTimer;
+//Start Game Function
+function startGame() {
+    player['name'] = prompt("Please enter your name:", "Abdallah Monzer");
+    if (player['name'] == null || player['name'] == "") {
+        //cancelled
+    } else {
+        //timer start working
+        $('#start_game').css('display','none');
+        $('#end_game').css('display','block');
+        $('.timer').css('display','block');
+        myGameTimer = setInterval(setTime, 1000);
+        document.getElementById("player_name").innerHTML = player['name'];
+        
+        //display rolling dice press
+        $('.dices #play').show(0);
+        
+        //Set initial values for the agent and the player
+        set_initial_info();
+        $('.bank_info').addClass('animated');
+        
+        switch_player_turn(player_turn, 0);
+
+    }
+}
+//End Game Function
+function endGame(){
+    clearInterval(myGameTimer);
+    $('#end_game').css('display','none');
+    $('#refresh_game').css('display','block');
+}
+function refreshGame(){
+    location.reload();
+}
+</script>
+
+<script type="text/javascript">
+    var minutesLabel = document.getElementById("minutes");
+    var secondsLabel = document.getElementById("seconds");
+    var totalSeconds = 0;
+    function setTime()
+    {
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds%60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+    }
+    function pad(val)
+    {
+        var valString = val + "";
+        if(valString.length < 2)
+        {
+            return "0" + valString;
+        }
+        else
+        {
+            return valString;
+        }
+    }
+</script>
+
+
+    <div class="model_message">
+        <div class="box">
+            <div id="message"></div>
+            <div class="close">x</div>
+        </div>
+    </div>
+
+<script>
+    $('.model_message .close').click(function(){
+        $('.model_message').fadeOut();
+    });
+</script>
+
+    </body>
+</html>
